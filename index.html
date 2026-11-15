@@ -68,26 +68,29 @@ var GAS_URL = "https://script.google.com/macros/s/AKfycbyCd-spaQaSZBA90L1-uFJt9n
 (function () {
   var qs = window.location.search || "";
   var target = GAS_URL + qs;
+  document.getElementById('manual').href = target;
 
-  var btn = document.getElementById('enterBtn');
-  var msg = document.getElementById('msg');
-  var loader = document.getElementById('loader');
-  var hint = document.getElementById('hint');
+  var f = document.createElement('iframe');
+  f.id = 'appFrame';
+  f.title = 'EPO SPORT';
+  f.setAttribute('allow', 'geolocation');
+  f.src = target;
 
-  btn.href = target;
+  var loaded = false;
+  f.addEventListener('load', function () {
+    loaded = true;
+    f.classList.add('on');
+    setTimeout(function () {
+      var s = document.getElementById('splash');
+      if (s) s.style.display = 'none';
+    }, 450);
+  });
+  document.body.appendChild(f);
 
+  /* Respaldo: si en 9 s no carga (conexión lenta), muestra enlace manual */
   setTimeout(function () {
-    loader.style.display = 'none';
-    msg.textContent = 'Tu menú está listo';
-    btn.hidden = false;
-    hint.hidden = false;
-  }, 900);
-
-  setTimeout(function () {
-    try {
-      window.location.replace(target);
-    } catch (e) {}
-  }, 1200);
+    if (!loaded) document.getElementById('fallback').hidden = false;
+  }, 9000);
 })();
 </script>
 </body>
