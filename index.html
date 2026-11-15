@@ -5,10 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#05080F">
 <title>EPO SPORT</title>
-
 <link rel="icon" href="logo.png" type="image/png">
 <link rel="apple-touch-icon" href="logo.png">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@500;700;800&display=swap" rel="stylesheet">
@@ -16,101 +14,80 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%}
 body{background:#05080F;color:#F2F5EA;font-family:'Archivo',system-ui,sans-serif;overflow:hidden}
-
-/* ---- IFRA ME: el menú vive aquí, la barra se queda en github.io ---- */
-#appFrame{position:fixed;inset:0;width:100%;height:100%;border:0;z-index:5;background:#05080F;opacity:0;transition:opacity .5s ease}
-#appFrame.on{opacity:1}
-
-/* ---- SPLASH de carga ---- */
 .stage{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:
  radial-gradient(120% 90% at 85% -10%,#12203A 0%,transparent 55%),
  radial-gradient(110% 80% at -10% 110%,#0E1B12 0%,transparent 55%),
- linear-gradient(180deg,#05080F,#0A1120);z-index:10;transition:opacity .5s ease,visibility .5s}
-.stage.hidden{opacity:0;visibility:hidden;pointer-events:none}
+ linear-gradient(180deg,#05080F,#0A1120);z-index:10;transition:opacity .5s ease}
+.stage.fade{opacity:0;pointer-events:none}
 .blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5}
 .b1{width:52vmax;height:52vmax;left:-18vmax;top:-20vmax;background:radial-gradient(circle at 35% 35%,rgba(212,255,63,.5),transparent 62%);animation:d1 22s ease-in-out infinite alternate}
 .b2{width:46vmax;height:46vmax;right:-16vmax;top:6vmax;background:radial-gradient(circle at 60% 40%,rgba(62,123,255,.46),transparent 62%);animation:d2 28s ease-in-out infinite alternate}
 @keyframes d1{to{transform:translate(9vmax,7vmax) scale(1.1)}}
 @keyframes d2{to{transform:translate(-8vmax,9vmax) scale(.92)}}
-
 .card{text-align:center;padding:24px;z-index:2;max-width:420px}
-
-/* ---- LOGO: tamaño controlado + contenedor blanco para que respire ---- */
-.badge{width:92px;height:92px;margin:0 auto 22px;border-radius:22px;display:grid;place-items:center;
- background:#F2F5EA;transform:rotate(-4deg);
- box-shadow:0 12px 34px rgba(212,255,63,.3),inset 0 2px 0 rgba(255,255,255,.6);animation:pop .7s cubic-bezier(.2,.7,.2,1.4) both;
- overflow:hidden;padding:10px}
-@keyframes pop{from{transform:rotate(-4deg) scale(.6);opacity:0}}
-.badge img{width:100%;height:100%;object-fit:contain;display:block}
-
+.badge{width:96px;height:96px;margin:0 auto 22px;border-radius:24px;display:grid;place-items:center;
+ background:transparent;transform:rotate(-3deg);
+ box-shadow:0 0 0 1px rgba(255,255,255,.08),0 14px 40px rgba(212,255,63,.28);animation:pop .7s cubic-bezier(.2,.7,.2,1.4) both}
+@keyframes pop{from{transform:rotate(-3deg) scale(.6);opacity:0}}
+.badge img{width:100%;height:100%;object-fit:contain;padding:6px}
 h1{font:400 clamp(30px,9vw,44px)/1 'Archivo Black',sans-serif;font-style:italic;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:10px}
 h1 em{color:#D4FF3F;text-shadow:0 0 26px rgba(212,255,63,.45)}
 p{color:#9AA8BC;font:500 14px/1.6 'Archivo',sans-serif;letter-spacing:.02em;margin-bottom:26px}
-.bar{width:170px;height:4px;margin:0 auto;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}
-.bar i{display:block;height:100%;width:40%;border-radius:99px;background:linear-gradient(90deg,#D4FF3F,#A8E600);animation:load 1.1s ease-in-out infinite}
-@keyframes load{0%{transform:translateX(-110%)}100%{transform:translateX(460%)}}
-
-/* ---- BOTÓN de respaldo (aparece si el iframe no cargó) ---- */
-.btn-enter{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;border-radius:16px;
+.btn-enter{display:none;align-items:center;gap:10px;padding:16px 36px;border-radius:16px;
  font:800 16px 'Archivo',sans-serif;letter-spacing:.04em;color:#0A0F1E;text-decoration:none;
  background:linear-gradient(140deg,#D4FF3F,#A8E600);box-shadow:0 14px 34px rgba(212,255,63,.35),inset 0 2px 0 rgba(255,255,255,.5);
  transition:transform .2s,box-shadow .2s;animation:beat 2.2s ease-in-out infinite}
+.btn-enter.show{display:inline-flex}
 .btn-enter:hover{transform:translateY(-3px);box-shadow:0 18px 44px rgba(212,255,63,.5)}
 .btn-enter:active{transform:scale(.97)}
 @keyframes beat{0%,100%{box-shadow:0 14px 34px rgba(212,255,63,.35)}50%{box-shadow:0 14px 44px rgba(212,255,63,.55)}}
+.bar{width:160px;height:4px;margin:0 auto;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}
+.bar i{display:block;height:100%;width:40%;border-radius:99px;background:linear-gradient(90deg,#D4FF3F,#A8E600);animation:load 1.1s ease-in-out infinite}
+@keyframes load{0%{transform:translateX(-110%)}100%{transform:translateX(460%)}}
 .small{font-size:11.5px;margin-top:18px;color:rgba(255,255,255,.35)}
-[hidden]{display:none!important}
+#appFrame{position:fixed;inset:0;width:100%;height:100%;border:0;z-index:5;background:#05080F;opacity:0;transition:opacity .4s ease}
+#appFrame.on{opacity:1}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-
-<!-- EL MENÚ CARGA AQUÍ (barra = eposport.github.io) -->
-<iframe id="appFrame" title="EPO SPORT"></iframe>
-
-<!-- PANTALLA DE CARGA -->
+<iframe id="appFrame" title="EPO SPORT" allow="geolocation"></iframe>
 <div class="stage" id="splash">
   <div class="blob b1"></div><div class="blob b2"></div>
   <div class="card">
     <div class="badge"><img src="logo.png" alt="EPO SPORT"></div>
     <h1>EPO <em>SPORT</em></h1>
-    <p>Ropa casual &amp; deportiva</p>
+    <p>Ropa casual &amp; deportiva<br>Pedidos, ubicacion y redes</p>
     <div class="bar" id="loader"><i></i></div>
-    <a class="btn-enter" id="enterBtn" href="#" target="_top" hidden>ABRIR MENÚ ⚡</a>
-    <p class="small" id="hint" hidden>Toca el botón para continuar</p>
+    <a class="btn-enter" id="enterBtn" href="#" target="_top">ABRIR MENU</a>
+    <p class="small" id="hint">Cargando...</p>
   </div>
 </div>
-
 <script>
 var GAS_URL = "https://script.google.com/macros/s/AKfycbyCd-spaQaSZZBA90L1-uFJt9nfy5K6-RDNtyiCH_vICW0U-wV2_l8KXwrTj6OHL069H/exec";
-
 (function () {
-  var qs = window.location.search || "";
-  var target = GAS_URL + qs;
+  var target = GAS_URL + (window.location.search || "");
   var frame = document.getElementById('appFrame');
   var splash = document.getElementById('splash');
   var loader = document.getElementById('loader');
   var btn = document.getElementById('enterBtn');
   var hint = document.getElementById('hint');
   btn.href = target;
-
-  frame.src = target;
-
-  var ok = false;
+  var loaded = false;
   frame.addEventListener('load', function () {
-    ok = true;
+    loaded = true;
     frame.classList.add('on');
-    setTimeout(function () { splash.classList.add('hidden'); }, 500);
+    setTimeout(function () { splash.classList.add('fade'); }, 400);
+    setTimeout(function () { splash.style.display = 'none'; }, 900);
   });
-
-  /* Si en 6 s no cargó (1ª vez, necesita verificar permisos), muestra el botón */
+  frame.src = target;
   setTimeout(function () {
-    if (!ok) {
+    if (!loaded) {
       loader.style.display = 'none';
-      btn.hidden = false;
-      hint.hidden = false;
+      btn.classList.add('show');
+      hint.textContent = 'Si no carga solo, toca el boton';
     }
-  }, 6000);
+  }, 7000);
 })();
 </script>
 </body>
